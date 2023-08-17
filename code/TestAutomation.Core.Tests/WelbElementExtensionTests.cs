@@ -1,31 +1,27 @@
-﻿using NUnit.Framework;
-using NUnit.Framework.Internal;
+﻿using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using TestAutomation.Core.Browser;
-using TestAutomation.Core.Elements;
 using TestAutomation.Core.Enums;
-using TestAutomation.Core.Utilities;
 
-
-namespace Test.Automation.Framework.Tests
+namespace TestAutomation.Core.Tests
 {
-    public class SeleniumAdvancedEpamTests
+    public class WelbElementExtensionTests
     {
         private IWebDriver _driver { get; set; }
-        private const string _epamUrl = "https://www.epam.com/";       
+        private const string _epamUrl = "https://www.epam.com/";
         private WebDriverWait _wait;
 
         [SetUp, Order(1)]
         public void BrowserSetup()
         {
-            TestAutomation.Core.Utilities.Logger.InitLogger("Browser");
             _driver = DriverFactory.GetWebBrowser(BrowserType.Edge);
-            _driver.Navigate().GoToUrl(_epamUrl);            
+            _driver.Navigate().GoToUrl(_epamUrl);
         }
 
         [SetUp, Order(2)]
@@ -71,9 +67,8 @@ namespace Test.Automation.Framework.Tests
             var languagesDropdown = _driver.FindElement(By.XPath("//button[@class='location-selector__button']"));
             //languagesDropdown.Click();
 
-            
-
-            languagesDropdown.ClickUsingJS(_driver);
+            IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)_driver;
+            jsExecutor.ExecuteScript("arguments[0].click();", languagesDropdown);
 
             // make sure that the language selection panel is displayed
             var langPanel = _driver.FindElement(By.XPath("//nav[@class='location-selector__panel']"));

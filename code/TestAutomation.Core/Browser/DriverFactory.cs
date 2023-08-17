@@ -4,6 +4,7 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Safari;
 using TestAutomation.Core.Enums;
+using TestAutomation.Core.Utilities;
 
 namespace TestAutomation.Core.Browser
 {
@@ -11,6 +12,7 @@ namespace TestAutomation.Core.Browser
     {
         public static IWebDriver GetWebBrowser(BrowserType type)
         {
+            Logger.Info($"Creating browser {type}");
             try
             {
                 switch (type)

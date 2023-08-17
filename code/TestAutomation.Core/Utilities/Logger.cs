@@ -1,6 +1,6 @@
 ﻿using Serilog;
 
-namespace TestAutomation.Core
+namespace TestAutomation.Core.Utilities
 {
     public static class Logger
     {
@@ -11,8 +11,13 @@ namespace TestAutomation.Core
             _logger.Information(message);
         }
 
-        public static void InitLogger(string loggerName, string pathToFolder)
+        public static void InitLogger(string loggerName, string pathToFolder  = null)
         {
+            if (pathToFolder == null) 
+            {
+                pathToFolder = Path.GetDirectoryName(Environment.CurrentDirectory);
+            }           
+
             Directory.CreateDirectory(pathToFolder);
 
             _logger = new LoggerConfiguration()
