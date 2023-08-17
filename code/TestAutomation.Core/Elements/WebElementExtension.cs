@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using System.Collections.ObjectModel;
+using TestAutomation.Core.Browser;
 
 namespace TestAutomation.Core.Elements
 {
@@ -14,11 +15,6 @@ namespace TestAutomation.Core.Elements
         public static string GetTextFromAttribute(this IWebElement element, string attributeName)
         {
             return element.GetAttribute(attributeName);
-        }
-
-        public static void Click(this IWebElement element)
-        {
-            element.Click();
         }
 
         public static void SendKeys(this IWebElement element, string text)
@@ -51,6 +47,7 @@ namespace TestAutomation.Core.Elements
             return driver.FindElements(locator);
         }
 
+
         public static void ClickUsingJS(this IWebElement element, IWebDriver driver)
         {
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click()", element);
@@ -66,6 +63,6 @@ namespace TestAutomation.Core.Elements
         {
             var actions = new Actions(driver);
             actions.DoubleClick(element).Build().Perform();
-        }
+        }   
     }
 }

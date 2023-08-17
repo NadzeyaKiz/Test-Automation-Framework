@@ -18,29 +18,19 @@ namespace Test.Automation.Framework.Tests
     {
         private IWebDriver _driver { get; set; }
         private const string _epamUrl = "https://www.epam.com/";       
-        private WebDriverWait _wait;
 
         [SetUp, Order(1)]
         public void BrowserSetup()
         {
             TestAutomation.Core.Utilities.Logger.InitLogger("Browser");
-            _driver = DriverFactory.GetWebBrowser(BrowserType.Edge);
-            _driver.Navigate().GoToUrl(_epamUrl);            
+            _driver = DriverFactory.GetWebBrowser(BrowserType.Edge).GotToWebPageUrl(_epamUrl);
         }
 
         [SetUp, Order(2)]
-        public void SetUpWaiter()
-        {
-            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-            _wait.Timeout = TimeSpan.FromSeconds(5);
-            _wait.PollingInterval = TimeSpan.FromSeconds(0.5);
-        }
-
-        [SetUp, Order(3)]
         public void SetUpCookies()
         {
             // accept cookies
-            _wait.Until(driver =>
+            _driver.WaitForCondition(driver =>
             {
                 var cookiesAcceptButtons = _driver.FindElements(By.XPath("//button[@id='onetrust-accept-btn-handler']"));
                 if (cookiesAcceptButtons.Count == 1)
@@ -59,31 +49,24 @@ namespace Test.Automation.Framework.Tests
         [Test]
         public void CheckJobListingsUrlTest()
         {
-            var expectedJobListingsUrl = "https://www.epam.com/careers/job-listings";
-            var careersButton = _driver.FindElement(By.XPath("//*[@href = '/careers' and  contains(@class, 'top-navigation__item-link')]"));
-            _driver.MoveToElement(careersButton);
-            _driver.FindElement(By.XPath("//nav[contains(@class,'top-navigation')]//a[@href='/careers/job-listings']")).Click();
-            Assert.That(_driver.Url, Is.EqualTo(expectedJobListingsUrl), "Incorrect URL");
+            _driver
+                .MoveToElement(By.XPath("//*[@href = '/careers' and  contains(@class, 'top-navigation__item-link')]"))
+                .Click(By.XPath("//nav[contains(@class,'top-navigation')]//a[@href='/careers/job-listings']"));
+
+            Assert.That(_driver.Url, Is.EqualTo("https://www.epam.com/careers/job-listings"), "Incorrect URL");
         }
         [Test]
         public void LanguagesDroudownListOfLanguadesTest()
         {
-            var languagesDropdown = _driver.FindElement(By.XPath("//button[@class='location-selector__button']"));
-            //languagesDropdown.Click();
-
-            
-
+            var languagesDropdown = _driver.FindTheElement(By.XPath("//button[@class='location-selector__button']"));
             languagesDropdown.ClickUsingJS(_driver);
 
-            // make sure that the language selection panel is displayed
-            var langPanel = _driver.FindElement(By.XPath("//nav[@class='location-selector__panel']"));
-            _wait.Until(driver => langPanel.Displayed);
+            var langPanel = _driver.FindTheElement(By.XPath("//nav[@class='location-selector__panel']"));
+            _driver.WaitForElementToBeVisible(langPanel);
 
-            // check that the required languages are present
             var languagesArray = new List<string> { "(English)", "(Русский)", "(Čeština)", "(Українська)", "(日本語)", "(中文)", "(Deutsch)", "(Polski)" };
 
-            var foundLanduages = _driver
-                .FindElements(By.XPath("//nav[@class='location-selector__panel']//a[contains(@class,'location-selector__link')]/span"))
+            var foundLanduages = _driver.FindTheElements(By.XPath("//nav[@class='location-selector__panel']//a[contains(@class,'location-selector__link')]/span"))
                 .Select(x => x.Text);
             foreach (var language in languagesArray)
             {
@@ -93,24 +76,18 @@ namespace Test.Automation.Framework.Tests
         [Test]
         public void NumberOfArticlesOnPageTest()
         {
-            var searchIcon = _driver.FindElement(By.XPath("//span[contains(@class,'dark-iconheader-search__search-icon')]"));
-            searchIcon.Click();
-
-            /*ensuring that the elements from the Search pannel are present before proceeding further. Once the elements are found, 
-             * they are stored in the listOfSearchElements variable, which can be used in further code.  */
+            _driver.Click(By.XPath("//span[contains(@class,'dark-iconheader-search__search-icon')]"));
+                        
             ReadOnlyCollection<IWebElement> listOfSearchElements = null;
-            _wait.Until(driver =>
+            _driver.WaitForCondition(driver =>
             {
                 listOfSearchElements = _driver.FindElements(By.XPath("//li[@class='frequent-searches__item']"));
                 return listOfSearchElements.Count > 0;
             });
-
-            /*enerate a random index within the range of the list of search elements, checks if the element at that index is 
-             * displayed on the page, and clicks on it if it's displayed. This random selection and interaction with elements 
-             * continue until a displayed element is successfully clicked. */
+                        
             Random random = new Random();
             int randomIndex = random.Next(0, listOfSearchElements.Count);
-            _wait.Until(driver =>
+            _driver.WaitForCondition(driver =>
             {
                 if (listOfSearchElements[randomIndex].Displayed)
                 {
@@ -120,12 +97,10 @@ namespace Test.Automation.Framework.Tests
                 return false;
             });
 
-            var findButton = _driver.FindElement(By.XPath("//*[@class='bth-text-layer']"));
+            var findButton = _driver.FindTheElement(By.XPath("//*[@class='bth-text-layer']"));
             findButton.Click();
 
-            /*scrolling to ensure the last article is visible and checking for the presence of a "View More" link/button. 
-             * It continues waiting until the "View More" link/button is found.*/
-            _wait.Until(driver =>
+            _driver.WaitForCondition(driver =>
             {
                 var listOfArticles = _driver.FindElements(By.XPath("//article"));
                 _driver.ScrollToElement(listOfArticles[listOfArticles.Count - 1]);

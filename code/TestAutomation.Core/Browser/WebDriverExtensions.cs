@@ -1,21 +1,28 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 using System.Collections.ObjectModel;
+using System.Threading;
+using System.Xml.Linq;
+using TestAutomation.Core.Elements;
 using TestAutomation.Core.Enums;
 using TestAutomation.Core.Utilities;
 
 namespace TestAutomation.Core.Browser
 {
-    public static class BrowserExtensions
+    public static class WebDriverExtensions
     {
+        public static TimeSpan DefaultTimeout = TimeSpan.FromMilliseconds(5000);
+        public static TimeSpan DefaultSleepTimeout = TimeSpan.FromMilliseconds(500);
         public static string GetUrl(this IWebDriver webDriver)
         {
             return webDriver.Url;
         }
 
-        public static void GotToWebPageUrl(this IWebDriver webDriver, string url)
+        public static IWebDriver GotToWebPageUrl(this IWebDriver webDriver, string url)
         {
             webDriver.Navigate().GoToUrl(url);
+            return webDriver;
         }
 
         public static void ScrollToElement(this IWebDriver webDriver, IWebElement element)
@@ -23,12 +30,7 @@ namespace TestAutomation.Core.Browser
             Actions actions = webDriver.GetActions();
             actions.ScrollToElement(element).Build().Perform();
         }
-
-        public static void MoveToElement(this IWebDriver webDriver, IWebElement element)
-        {
-            Actions actions = webDriver.GetActions();
-            actions.MoveToElement(element).Build().Perform();
-        }
+                
        
         public static void GoBack(this IWebDriver webDriver)
         {
@@ -57,14 +59,8 @@ namespace TestAutomation.Core.Browser
             Actions actions = webDriver.GetActions();
             actions.SendKeys(Keys.Home).Build().Perform();
         }
-        public static IWebElement FindTheElement(this IWebDriver webDriver, By locator)
-        {
-            return webDriver.FindElement(locator);
-        }
-        public static ReadOnlyCollection<IWebElement> FindTheElements(this IWebDriver webDriver, By by)
-        {
-            return webDriver!.FindElements(by);
-        }
+        
+       
         public static void SetSessionToken(this IWebDriver webDriver, string token)
         {
             var tokenValue = "{\"type\":\"bearer\",\"value\":\"" + token + " \"}";
@@ -118,6 +114,73 @@ namespace TestAutomation.Core.Browser
         {
             webDriver.SwitchTo().Window(windowHandle);
         }
+
+        public static void Click(this IWebDriver driver, By by)
+        {
+            var element = driver.FindTheElement(by);
+            if (element == null)
+            {
+                throw new Exception($"Element {by.ToString()} has not been found");
+            }
+            if (!element.Displayed)
+            {
+                Logger.Info($"Element {by.ToString()} is not displayed. Waiting to be displayed to become clickable");
+                driver.WaitForElementToBeVisible(element);
+            }
+            element.Click();
+        }
+
+        public static void MoveToElement(this IWebDriver webDriver, IWebElement element)
+        {
+            Actions actions = webDriver.GetActions();
+            actions.MoveToElement(element).Build().Perform();
+        }
+
+        public static IWebDriver MoveToElement(this IWebDriver driver, By by)
+        {
+            var element = driver.FindTheElement(by);
+            if (element == null)
+            {
+                throw new Exception($"Element {by.ToString()} has not been found");
+            }
+            Actions actions = driver.GetActions();
+            actions.MoveToElement(element).Build().Perform();
+            return driver;
+        }
+
+        #region Waiters
+        public static void WaitForCondition(this IWebDriver driver, Func<IWebDriver, bool> condition, TimeSpan timeout)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, timeout);
+            wait.PollingInterval = DefaultSleepTimeout;
+            wait.Until(condition);
+        }
+
+        public static void WaitForCondition(this IWebDriver driver, Func<IWebDriver, bool> condition)
+        {
+            WaitForCondition(driver, condition, DefaultTimeout);
+        }
+
+        public static void WaitForElementToBeVisible(this IWebDriver driver, IWebElement element, TimeSpan timeout)
+        {
+            WaitForCondition(driver, d => element.Displayed, timeout);
+        }
+
+        public static void WaitForElementToBeVisible(this IWebDriver driver, IWebElement element)
+        {
+            WaitForElementToBeVisible(driver, element, DefaultSleepTimeout);
+        }
+
+        public static void WaitForElementToBeClickable(this IWebDriver driver, IWebElement element, TimeSpan timeout)
+        {
+            WaitForCondition(driver, d => element.Enabled && element.Displayed, timeout);
+        }
+
+        public static void WaitForElementToBePresent(this IWebDriver driver, By locator, TimeSpan timeout)
+        {
+            WaitForCondition(driver, d => d.FindElements(locator).Count > 0, timeout);
+        }
+        #endregion
 
     }
 
