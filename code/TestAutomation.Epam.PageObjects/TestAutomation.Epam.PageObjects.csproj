@@ -13,8 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TestAutomation.Core\TestAutomation.Core.csproj" />
-    <ProjectReference Include="..\TestAutomation.Epam.PageObjects\TestAutomation.Epam.PageObjects.csproj" />
-    <ProjectReference Include="..\TestAutomation.Utilities\TestAutomation.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

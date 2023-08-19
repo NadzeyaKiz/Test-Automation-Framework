@@ -1,6 +1,6 @@
 ﻿using Serilog;
 
-namespace TestAutomation.Core.Utilities
+namespace TestAutomation.Utilities
 {
     public static class Logger
     {

@@ -5,6 +5,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Safari;
 using TestAutomation.Core.Enums;
 using TestAutomation.Core.Utilities;
+using TestAutomation.Utilities;
 
 namespace TestAutomation.Core.Browser
 {

@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TestAutomation.Core\TestAutomation.Core.csproj" />
     <ProjectReference Include="..\TestAutomation.Tests\TestAutomation.Tests.csproj" />
+    <ProjectReference Include="..\TestAutomation.Utilities\TestAutomation.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

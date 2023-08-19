@@ -37,10 +37,7 @@ namespace TestAutomation.Core.Elements
             return element.Enabled;
         }
 
-        public static IWebElement FindTheElement(this IWebDriver driver, By locator)
-        {
-            return driver.FindElement(locator);
-        }
+       
 
         public static ReadOnlyCollection<IWebElement> FindTheElements(this IWebDriver driver, By locator)
         {

@@ -1,12 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
-using System.Collections.ObjectModel;
-using System.Threading;
-using System.Xml.Linq;
 using TestAutomation.Core.Elements;
-using TestAutomation.Core.Enums;
-using TestAutomation.Core.Utilities;
+using TestAutomation.Utilities;
 
 namespace TestAutomation.Core.Browser
 {
@@ -115,7 +111,17 @@ namespace TestAutomation.Core.Browser
             webDriver.SwitchTo().Window(windowHandle);
         }
 
-        public static void Click(this IWebDriver driver, By by)
+        public static void ClickWithFindElement(this IWebDriver driver, By by)
+        {
+            FindElementWithElementTobeVisible(driver, by).Click();
+        }
+
+        public static IWebElement FindTheElement(this IWebDriver driver, By locator)
+        {
+            return driver.FindElement(locator);
+        }
+
+        public static IWebElement FindElementWithElementTobeVisible(this IWebDriver driver, By by)
         {
             var element = driver.FindTheElement(by);
             if (element == null)
@@ -127,7 +133,7 @@ namespace TestAutomation.Core.Browser
                 Logger.Info($"Element {by.ToString()} is not displayed. Waiting to be displayed to become clickable");
                 driver.WaitForElementToBeVisible(element);
             }
-            element.Click();
+            return element;
         }
 
         public static void MoveToElement(this IWebDriver webDriver, IWebElement element)

@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using Serilog;
 
-namespace TestAutomation.Core.Utilities
+namespace TestAutomation.Utilities
 {
     public class ScreenShotTaker
     {

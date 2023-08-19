@@ -1,22 +1,16 @@
-﻿using NUnit.Framework.Interfaces;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using System.Collections.ObjectModel;
 using TestAutomation.Core.Browser;
 using TestAutomation.Core.Elements;
-using TestAutomation.Core.Enums;
 using TestAutomation.Core.Utilities;
 using TestAutomation.Tests;
 
 namespace Test.Automation.Framework.Tests
 {
     public class SeleniumAdvancedTAFTests : BaseTest
-    {        
-        private const string _epamUrl = "https://www.epam.com/";
-
-        [SetUp]
-        public void BrowserSetup()
+    {  
+        public override void BrowserSetup(IWebDriver driver)
         {
-            _driver = DriverFactory.GetWebBrowser(BrowserType.Edge).GotToWebPageUrl(_epamUrl);
             _driver.SetUpCookies(By.XPath("//button[@id='onetrust-accept-btn-handler']"));
         }
         
@@ -25,7 +19,7 @@ namespace Test.Automation.Framework.Tests
         {
             _driver
                 .MoveToElement(By.XPath("//*[@href = '/careers' and  contains(@class, 'top-navigation__item-link')]"))
-                .Click(By.XPath("//nav[contains(@class,'top-navigation')]//a[@href='/careers/job-listings']"));
+                .ClickWithFindElement(By.XPath("//nav[contains(@class,'top-navigation')]//a[@href='/careers/job-listings']"));
 
             Assert.That(_driver.Url, Is.EqualTo("https://www.epam.com/careers/job-listings"), "Incorrect URL");
         }
@@ -33,11 +27,8 @@ namespace Test.Automation.Framework.Tests
         [Test]
         public void LanguagesDroudownListOfLanguadesTest()
         {
-            _driver.ClickUsingJSWithFind(By.XPath("//button[@class='location-selector__button']"));
-           
-            //Re-do metod to get FindElementWithWait
-            var langPanel = _driver.FindTheElement(By.XPath("//nav[@class='location-selector__panel']"));
-            _driver.WaitForElementToBeVisible(langPanel);
+            _driver.ClickUsingJSWithFind(By.XPath("//button[@class='location-selector__button']"));           
+            _driver.FindElementWithElementTobeVisible(By.XPath("//nav[@class='location-selector__panel']"));
 
             var languagesArray = new List<string> { "(English)", "(Русский)", "(Čeština)", "(Українська)", "(日本語)", "(中文)", "(Deutsch)", "(Polski)" };
 
@@ -52,7 +43,7 @@ namespace Test.Automation.Framework.Tests
         [Test]
         public void NumberOfArticlesOnPageTest()
         {
-            _driver.Click(By.XPath("//span[contains(@class,'dark-iconheader-search__search-icon')]"));
+            _driver.ClickWithFindElement(By.XPath("//span[contains(@class,'dark-iconheader-search__search-icon')]"));
                         
             ReadOnlyCollection<IWebElement> listOfSearchElements = null;
             _driver.WaitForCondition(driver =>
@@ -73,7 +64,7 @@ namespace Test.Automation.Framework.Tests
                 return false;
             });
             //findButton
-            _driver.Click(By.XPath("//*[@class='bth-text-layer']"));
+            _driver.ClickWithFindElement(By.XPath("//*[@class='bth-text-layer']"));
 
             _driver.WaitForCondition(driver =>
             {
