@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAutomation.Core", "Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAutomation.Core.Tests", "TestAutomation.Core.Tests\TestAutomation.Core.Tests.csproj", "{D6D30601-FF3E-4616-8BB6-AF5F44E72241}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAutomation.Tests", "TestAutomation.Tests\TestAutomation.Tests.csproj", "{37C858F5-4E6B-4109-85F3-E223867D17CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D6D30601-FF3E-4616-8BB6-AF5F44E72241}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6D30601-FF3E-4616-8BB6-AF5F44E72241}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6D30601-FF3E-4616-8BB6-AF5F44E72241}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37C858F5-4E6B-4109-85F3-E223867D17CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37C858F5-4E6B-4109-85F3-E223867D17CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37C858F5-4E6B-4109-85F3-E223867D17CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37C858F5-4E6B-4109-85F3-E223867D17CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

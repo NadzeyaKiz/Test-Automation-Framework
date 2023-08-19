@@ -15,7 +15,7 @@ namespace TestAutomation.Core.Utilities
         {
             if (pathToFolder == null) 
             {
-                pathToFolder = Path.GetDirectoryName(Environment.CurrentDirectory);
+                pathToFolder = Path.Combine(Path.GetDirectoryName(Environment.CurrentDirectory), "logs");
             }           
 
             Directory.CreateDirectory(pathToFolder);

@@ -12,8 +12,8 @@ namespace TestAutomation.Core.Browser
 {
     public static class WebDriverExtensions
     {
-        public static TimeSpan DefaultTimeout = TimeSpan.FromMilliseconds(5000);
-        public static TimeSpan DefaultSleepTimeout = TimeSpan.FromMilliseconds(500);
+        public static TimeSpan DefaultTimeout = TimeSpan.FromMilliseconds(15000);
+        public static TimeSpan DefaultSleepTimeout = TimeSpan.FromMilliseconds(1000);
         public static string GetUrl(this IWebDriver webDriver)
         {
             return webDriver.Url;
@@ -147,6 +147,23 @@ namespace TestAutomation.Core.Browser
             actions.MoveToElement(element).Build().Perform();
             return driver;
         }
+
+        public static void ClickUsingJSWithFind(this IWebDriver driver, By by)
+        {
+
+            var element = driver.FindTheElement(by);
+            if (element == null)
+            {
+                throw new Exception($"Element {by.ToString()} has not been found");
+            }
+            if (!element.Displayed)
+            {
+                Logger.Info($"Element {by.ToString()} is not displayed. Waiting to be displayed to become clickable");
+                driver.WaitForElementToBeVisible(element);
+            }
+            element.ClickUsingJS(driver);
+        }
+
 
         #region Waiters
         public static void WaitForCondition(this IWebDriver driver, Func<IWebDriver, bool> condition, TimeSpan timeout)

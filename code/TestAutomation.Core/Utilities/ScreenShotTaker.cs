@@ -1,43 +1,60 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Serilog;
 
 namespace TestAutomation.Core.Utilities
 {
-    internal class ScreenShotTaker
+    public class ScreenShotTaker
     {
-        internal static void TakeScreenshot(IWebDriver driver, string testName, string folderPath)
+        public static string FolderPath { get; private set; }
+
+        public static void InitScreenShotTaker(string folderPath = null)
         {
-            if (!Directory.Exists(folderPath))
+            FolderPath = folderPath;
+            if (FolderPath == null)
             {
-                Directory.CreateDirectory(folderPath);
+                FolderPath = Path.Combine(Path.GetDirectoryName(Environment.CurrentDirectory), "screenshots");
             }
 
+            Directory.CreateDirectory(FolderPath);
+        }
+
+        public static void CaptureScreenshot(IWebDriver driver, string testName)
+        {   
+            ITakesScreenshot? screenshotDriver = driver as ITakesScreenshot;
+            if (screenshotDriver == null)
+            {
+                throw new Exception("Driver does not support interface to capture screenshots");
+            }
+
+            var path = GetScreenshotFilePath(testName);
+            screenshotDriver
+                .GetScreenshot()
+                .SaveAsFile(path, ScreenshotImageFormat.Png);
+        }
+
+        public static void CaptureElementScreenshot(IWebElement element, string testName)
+        {
+            if (!element.Displayed)
+            {
+                throw new Exception($"Element {element.TagName} is not visible. Screenshot can not be taken");
+            }
+
+            ITakesScreenshot? screenshotTaker = element as ITakesScreenshot;
+            if (screenshotTaker == null)
+            {
+                throw new Exception("Driver does not support interface to capture screenshots");
+            }
+
+            var path = GetScreenshotFilePath(testName);
+            screenshotTaker
+                .GetScreenshot()
+                .SaveAsFile(path, ScreenshotImageFormat.Png);
+        }
+
+        internal static string GetScreenshotFilePath(string testName)
+        {
             string screenFileName = $"{testName}_{DateTime.Now:ddMM_HHmmss}.png";
-            string screenPath = Path.Combine(folderPath, screenFileName);           
+            return Path.Combine(FolderPath, screenFileName);
         }
-
-        public static void CaptureScreenshot(IWebDriver driver, string screenshotFilePath)
-        {
-            ITakesScreenshot screenshotDriver = driver as ITakesScreenshot;
-            if (screenshotDriver != null)
-            {
-                Screenshot screenshot = screenshotDriver.GetScreenshot();
-                screenshot.SaveAsFile(screenshotFilePath, ScreenshotImageFormat.Png);
-            }
-        }
-
-        public static void CaptureElementScreenshot(IWebElement element, string screenshotFilePath)
-        {
-            if (element.Displayed)
-            {
-                Screenshot screenshot = ((ITakesScreenshot)element).GetScreenshot();
-                screenshot.SaveAsFile(screenshotFilePath, ScreenshotImageFormat.Png);
-            }
-        }
-
     }
 }
