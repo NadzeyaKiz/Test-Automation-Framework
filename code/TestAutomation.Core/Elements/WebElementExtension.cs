@@ -60,6 +60,6 @@ namespace TestAutomation.Core.Elements
         {
             var actions = new Actions(driver);
             actions.DoubleClick(element).Build().Perform();
-        }   
+        }       
     }
 }

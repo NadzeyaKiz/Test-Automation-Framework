@@ -6,11 +6,12 @@ namespace TestAutomation.Core.Elements
     public abstract class BasePage
     {
         public IWebDriver Driver { get; protected set; }
+        public static string PageUrl { get; protected set; }
         public BasePage(IWebDriver driver)
         {
             Driver = driver;
         }
-        public abstract bool IsOpened();
+        public bool IsOpened() => GetPageUrl().Equals(PageUrl);
 
         public string GetPageUrl() => Driver.GetUrl();
 

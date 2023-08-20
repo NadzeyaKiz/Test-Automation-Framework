@@ -116,6 +116,11 @@ namespace TestAutomation.Core.Browser
             FindElementWithElementTobeVisible(driver, by).Click();
         }
 
+        public static void ClickWithWaitForDisplay(this IWebDriver driver, IWebElement element)
+        {
+            driver.WaitForElementToBeVisible(element).Click();
+        }
+
         public static IWebElement FindTheElement(this IWebDriver driver, By locator)
         {
             return driver.FindElement(locator);
@@ -135,6 +140,7 @@ namespace TestAutomation.Core.Browser
             }
             return element;
         }
+       
 
         public static void MoveToElement(this IWebDriver webDriver, IWebElement element)
         {
@@ -189,9 +195,10 @@ namespace TestAutomation.Core.Browser
             WaitForCondition(driver, d => element.Displayed, timeout);
         }
 
-        public static void WaitForElementToBeVisible(this IWebDriver driver, IWebElement element)
+        public static IWebElement WaitForElementToBeVisible(this IWebDriver driver, IWebElement element)
         {
             WaitForElementToBeVisible(driver, element, DefaultSleepTimeout);
+            return element;
         }
 
         public static void WaitForElementToBeClickable(this IWebDriver driver, IWebElement element, TimeSpan timeout)
