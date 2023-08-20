@@ -6,7 +6,7 @@ using TestAutomation.Core.Utilities;
 using TestAutomation.Epam.PageObjects.Pages;
 using TestAutomation.Tests;
 
-namespace Test.Automation.Framework.Tests
+namespace TestAutomation.Epam.Tests
 {
     public class SeleniumAdvancedTAFTests : BaseTest
     {
