@@ -30,20 +30,17 @@ namespace Test.Automation.Framework.Tests
             var actualLanguages = MainPage
                 .OpenLanguagePannel()
                 .GetLanguagesFromLangPannel();
-
             var expectedLanguages = new List<string> { "(English)", "(Русский)", "(Čeština)", "(Українська)", "(日本語)", "(中文)", "(Deutsch)", "(Polski)" };
 
-            CollectionAssert.IsSubsetOf(expectedLanguages, actualLanguages);
-            
+            CollectionAssert.IsSubsetOf(expectedLanguages, actualLanguages);            
         }
+
         [Test]
         public void NumberOfFrequentSearchArticlesOnPageTest()
-        {
+        {            
             var frequantSearchElement = this.MainPage.GetFrequentSearchRandomElement();
-            _driver.ClickWithWaitForDisplay(frequantSearchElement);    
-                       
-            MainPage.ClickFindButtonOnSearchPannel();
-            
+            _driver.ClickWithWaitForDisplay(frequantSearchElement);                       
+            MainPage.ClickFindButtonOnSearchPannel();            
             var actualSearchArticles = (new SearchPage(_driver)).GetSearchItemList();
            
             Assert.That(actualSearchArticles, Has.Count.EqualTo(20));

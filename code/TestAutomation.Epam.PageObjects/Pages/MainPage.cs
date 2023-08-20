@@ -15,6 +15,7 @@ namespace TestAutomation.Epam.PageObjects.Pages
 {
     public class MainPage : BasePage
     {
+
         static MainPage()
         {
             PageUrl = UiTestSettings.ApplicationUrl;
