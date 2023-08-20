@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33717.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAutomation.Core", "TestAutomation.Core\TestAutomation.Core.csproj", "{C924C986-3F4A-4670-9E0B-C3EF5072653C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAutomation.Epam.Tests", "TestAutomation.Core.Tests\TestAutomation.Epam.Tests.csproj", "{D6D30601-FF3E-4616-8BB6-AF5F44E72241}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAutomation.Epam.Tests", "TestAutomation.Epam.Tests\TestAutomation.Epam.Tests.csproj", "{D6D30601-FF3E-4616-8BB6-AF5F44E72241}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAutomation.Tests", "TestAutomation.Tests\TestAutomation.Tests.csproj", "{37C858F5-4E6B-4109-85F3-E223867D17CB}"
 EndProject
