@@ -27,7 +27,7 @@ namespace TestAutomation.Core.Elements
             element.Clear();
         }
 
-        public static bool IsElementDisplayedOnPage(this IWebElement element)
+        public static bool IsElementDisplayedOnPage(this IWebElement element, IWebElement epamLogo)
         {
             return element.Displayed;
         }
