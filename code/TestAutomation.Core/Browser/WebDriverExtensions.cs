@@ -202,7 +202,7 @@ namespace TestAutomation.Core.Browser
 
         public static IWebElement WaitForElementToBeVisible(this IWebDriver driver, IWebElement element)
         {
-            WaitForElementToBeVisible(driver, element, DefaultSleepTimeout);
+            WaitForElementToBeVisible(driver, element, DefaultTimeout);
             return element;
         }
 
