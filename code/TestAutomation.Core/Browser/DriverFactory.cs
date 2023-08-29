@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Safari;
 using System.Drawing;
 using TestAutomation.Core.Enums;
@@ -42,10 +43,13 @@ namespace TestAutomation.Core.Browser
         {
             var chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("--start-maximized");
+            chromeOptions.AddArgument("Headless");
+            chromeOptions.AddArgument("window-size=1920,1080");
             var service = ChromeDriverService.CreateDefaultService();
             var chromeDriver = new ChromeDriver(service, chromeOptions, TimeSpan.FromMinutes(2));
+            
             //chromeDriver.Manage().Window.Maximize();
-            chromeDriver.Manage().Window.Size = new Size(1280, 720);
+            //chromeDriver.Manage().Window.Size = new Size(1280, 720);
             return chromeDriver;
         }
 
