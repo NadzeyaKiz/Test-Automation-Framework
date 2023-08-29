@@ -19,7 +19,7 @@ namespace TestAutomation.Utilities
         }
 
         public static void CaptureScreenshot(IWebDriver driver, string testName)
-        {   
+        {
             ITakesScreenshot? screenshotDriver = driver as ITakesScreenshot;
             if (screenshotDriver == null)
             {
@@ -53,7 +53,7 @@ namespace TestAutomation.Utilities
 
         internal static string GetScreenshotFilePath(string testName)
         {
-            string screenFileName = $"{testName}_{DateTime.Now:ddMM_HHmmss}.png";
+            string screenFileName = $"{testName.Trim(Path.GetInvalidFileNameChars())}_{DateTime.Now:ddMM_HHmmss}.png";
             return Path.Combine(FolderPath, screenFileName);
         }
     }
