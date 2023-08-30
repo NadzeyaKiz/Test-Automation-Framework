@@ -111,7 +111,7 @@ namespace TestAutomation.Epam.Tests
             var firstArticleText = firstArticleElement.Text;
             firstArticleElement.Click();
 
-            var actualTitleOfOpendFirstArticlePage = _driver.FindElement(By.XPath("//*[@class='museo-sans-light']")).Text;
+            var actualTitleOfOpendFirstArticlePage = _driver.FindElement(By.XPath("//main//*[@class='museo-sans-light']")).Text;
 
             Assert.AreEqual(firstArticleText, actualTitleOfOpendFirstArticlePage, "Invalid first article Title");
         }

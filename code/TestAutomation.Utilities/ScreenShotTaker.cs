@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using Serilog;
+using System.IO.Enumeration;
 
 namespace TestAutomation.Utilities
 {
@@ -53,7 +54,8 @@ namespace TestAutomation.Utilities
 
         internal static string GetScreenshotFilePath(string testName)
         {
-            string screenFileName = $"{testName.Trim(Path.GetInvalidFileNameChars())}_{DateTime.Now:ddMM_HHmmss}.png";
+            var fileName = string.Concat(testName.Split(Path.GetInvalidFileNameChars()));
+            string screenFileName = $"{fileName}_{DateTime.Now:ddMM_HHmmss}.png";
             return Path.Combine(FolderPath, screenFileName);
         }
     }
