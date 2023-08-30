@@ -10,6 +10,7 @@ namespace TestAutomation.Core.Browser
     {
         public static TimeSpan DefaultTimeout = TimeSpan.FromMilliseconds(15000);
         public static TimeSpan DefaultSleepTimeout = TimeSpan.FromMilliseconds(1000);
+
         public static string GetUrl(this IWebDriver webDriver)
         {
             return webDriver.Url;
@@ -26,8 +27,7 @@ namespace TestAutomation.Core.Browser
             Actions actions = webDriver.GetActions();
             actions.ScrollToElement(element).Build().Perform();
         }
-                
-       
+        
         public static void GoBack(this IWebDriver webDriver)
         {
             Logger.Info("Navigate Back");
@@ -54,8 +54,7 @@ namespace TestAutomation.Core.Browser
         {
             Actions actions = webDriver.GetActions();
             actions.SendKeys(Keys.Home).Build().Perform();
-        }
-        
+        }        
        
         public static void SetSessionToken(this IWebDriver webDriver, string token)
         {

@@ -35,15 +35,12 @@ namespace TestAutomation.Core.Elements
         public static bool IsElementEnabled(this IWebElement element)
         {
             return element.Enabled;
-        }
-
-       
+        }       
 
         public static ReadOnlyCollection<IWebElement> FindTheElements(this IWebDriver driver, By locator)
         {
             return driver.FindElements(locator);
         }
-
 
         public static void ClickUsingJS(this IWebElement element, IWebDriver driver)
         {
