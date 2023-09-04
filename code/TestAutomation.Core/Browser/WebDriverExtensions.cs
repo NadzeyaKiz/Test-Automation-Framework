@@ -135,6 +135,12 @@ namespace TestAutomation.Core.Browser
             driver.WaitForElementToBeVisible(element).Click();
         }
 
+        public static void ClickWithWaitForDisplay(this IWebDriver driver, By by)
+        {
+            var element = FindElementWithElementTobeVisible(driver, by);
+            element.Click();
+        }
+
         public static IWebElement FindTheElement(this IWebDriver driver, By locator)
         {
             return driver.FindElement(locator);

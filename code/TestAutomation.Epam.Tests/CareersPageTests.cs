@@ -33,18 +33,19 @@ namespace TestAutomation.Epam.Tests
             }           
         }
 
-        //[Test]
-        //public void KeywordLocationSearchResultСontextTest()
-        //{
-        //    var mainPage = new MainPage(_driver);
-        //    var jobListingPage = mainPage.NavigateToJobListingsPage();
-        //    var testData = TestDataClassFactory.GetTestData<CareersLocationKeywordSearchTestData>("CareersLocationKeywordSearchTestData.json");
+        [Test]
+        public void KeywordLocationSearchResultСontextTest()
+        {
+            var mainPage = new MainPage(_driver);
+            var jobListingPage = mainPage.NavigateToJobListingsPage();
+            var testData = TestDataClassFactory.GetTestData<CareersLocationKeywordSearchTestData>("CareersLocationKeywordSearchTestData.json");
 
-        //    foreach (var element in testData)
-        //    {
-        //        var searchResultTitleText = jobListingPage.SearchByKeyword(element.Keyword).GetSearchResultTitleText();
-        //        Assert.That(searchResultTitleText.Contains(element.Keyword), $"Search result {searchResultTitleText} does not contain {element.Keyword}");
-        //    }
-        //}
+            foreach (var element in testData)
+            {
+                var searchResultLocations = jobListingPage.SelectByLocationKeyword(element.KeywordCountry, element.KeywordCity);
+                var wrongResults = searchResultLocations.Where(x => !x.Contains(element.KeywordCountry,StringComparison.OrdinalIgnoreCase) || !x.Contains(element.KeywordCity, StringComparison.OrdinalIgnoreCase));
+                CollectionAssert.IsEmpty(wrongResults, $"Not all elements are related to the selected location {element.KeywordCountry} and {element.KeywordCity}");
+            }
+        }
     }
 }

@@ -10,9 +10,11 @@ namespace TestAutomation.Epam.PageObjects.Pages
         public static string KeyWordOrJobIDLocator = "//input[@id='new_form_job_search-keyword']";
         public static string FindButtonOnJobListingsPage = "//button[@type='submit']";
         public static string SearchResultTitleLocator = "//*[contains(@class,'search-result__heading')]";
-        public static string SearchLocationInputLocator = "//*[@class='select2-search__field']";
+        public static string SearchLocationArrowLocator = "//*[@class='select2-selection__arrow']";
         public static string SearchLocationDropdownLocator = "//*[@id='select2-new_form_job_search-location-results']"; //all results locator
         public static string SearchLocationDropdownCountryLocator = "//li[@class='select2-results__option'][@aria-label='{0}']";
+        public static string SearchLocationDropdownCityLocator = "//li[contains(@id,'{0}')]";
+        public static string SearchResultLocationsLocator = "//*[@class='search-result__item-info-group']";
 
         public JobListingPage(IWebDriver driver) : base(driver)
         {
@@ -36,14 +38,17 @@ namespace TestAutomation.Epam.PageObjects.Pages
             return this;
         }
 
-        //public JobListingPage SelectByLocationKeyword(string countryToSelect, string cityToSelect)
-        //{
-        //    Driver.FindElement(By.XPath(SearchLocationInputLocator)).Click();
-        //    Driver.WaitForElementToBePresent(By.XPath(SearchLocationDropdownLocator), TimeSpan.FromSeconds(5));
-        //    Driver.ClickWithFindElement(By.XPath(string.Format(SearchLocationDropdownCountryLocator, countryToSelect)));
-        //    Driver.WaitForElementToBePresent(By.XPath(SearchLocationDropdownLocator), TimeSpan.FromSeconds(5));
-        //    dropdown.Select(elemetnt => elemetnt.Text)
-        //}
+        public List<string> SelectByLocationKeyword(string countryToSelect, string cityToSelect)
+        {
+            Driver.FindElement(By.XPath(SearchLocationArrowLocator)).Click();
+            Driver.WaitForElementToBePresent(By.XPath(SearchLocationDropdownLocator), TimeSpan.FromSeconds(5));
+            Driver.ClickWithFindElement(By.XPath(string.Format(SearchLocationDropdownCountryLocator, countryToSelect)));
+            //Driver.WaitForElementToBePresent(By.XPath(string.Format(SearchLocationDropdownCityLocator, cityToSelect)), TimeSpan.FromSeconds(5));
+            Driver.ClickWithFindElement(By.XPath(string.Format(SearchLocationDropdownCityLocator, cityToSelect)));
+            Thread.Sleep(3000);//could not identify a conditions when search results are refreshed
+            var searchResults = Driver.FindElements(By.XPath(SearchResultLocationsLocator));
+            return searchResults.Select(element => element.Text).ToList();
+        }
 
         public string GetSearchResultTitleText()
         {

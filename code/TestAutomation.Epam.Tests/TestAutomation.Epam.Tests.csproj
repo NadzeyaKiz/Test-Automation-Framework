@@ -31,6 +31,9 @@
     <None Update="TestData\CareersKeywordSearchTestData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="TestData\CareersLocationKeywordSearchTestData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
