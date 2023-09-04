@@ -38,6 +38,16 @@ namespace TestAutomation.Epam.PageObjects.Pages
 
             return new JobListingPage(Driver);
         }
+
+        ////public CareersPage NavigateToCareersPage()
+        //{
+        //    Driver
+        //        .MoveToElement(By.XPath(careersHeaderButtonLocator))
+        //        .ClickWithFindElement(By.XPath(joinOurTeamCareersLinkLocator));
+
+        //    return new JobListingPage(Driver);
+        //}
+
         public MainPage OpenLanguagePannel()
         {
             Driver.ClickUsingJSWithFind(By.XPath(locationSelectorHeaderButtonLocator));

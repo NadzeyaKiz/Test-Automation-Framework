@@ -27,4 +27,10 @@
     <ProjectReference Include="..\TestAutomation.Utilities\TestAutomation.Utilities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TestData\CareersKeywordSearchTestData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
