@@ -9,7 +9,7 @@ namespace TestAutomation.Epam.Tests.TestDataClasses
             Logger.Info($"Parsing test data from file TestData\\{fileName}");
             if (!File.Exists($"TestData\\{fileName}"))
             {
-                throw new Exception($"File does not exist 'TestData{fileName}'");
+                throw new Exception($"File does not exist 'TestData\\{fileName}'");
             }
 
             try
