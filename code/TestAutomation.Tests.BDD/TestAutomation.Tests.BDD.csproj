@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -15,13 +15,18 @@
     <PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />
     <PackageReference Include="NUnit.Analyzers" Version="3.6.1" />
     <PackageReference Include="coverlet.collector" Version="3.2.0" />
+    <PackageReference Include="Serilog" Version="3.0.1" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
     <PackageReference Include="SpecFlow" Version="3.9.74" />
     <PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\" />
-    <Folder Include="Steps\" />
+    <ProjectReference Include="..\TestAutomation.Core\TestAutomation.Core.csproj" />
+    <ProjectReference Include="..\TestAutomation.Epam.PageObjects\TestAutomation.Epam.PageObjects.csproj" />
+    <ProjectReference Include="..\TestAutomation.Epam.Tests\TestAutomation.Epam.Tests.csproj" />
+    <ProjectReference Include="..\TestAutomation.Tests\TestAutomation.Tests.csproj" />
+    <ProjectReference Include="..\TestAutomation.Utilities\TestAutomation.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

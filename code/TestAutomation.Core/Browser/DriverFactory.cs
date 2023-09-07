@@ -13,24 +13,42 @@ namespace TestAutomation.Core.Browser
 {
     public static class DriverFactory
     {
-        public static IWebDriver GetWebBrowser(BrowserType type)
+        private static Dictionary<BrowserType, IWebDriver> DriverDictionary = new Dictionary<BrowserType, IWebDriver>();
+
+        public static IWebDriver GetWebBrowser(BrowserType type, bool isSingleton=false)
         {
+            IWebDriver driver;
+            if (isSingleton && DriverDictionary.TryGetValue(type, out driver))
+            {
+                return driver;
+            }
+
             Logger.Info($"Creating browser {type}");
             try
             {
                 switch (type)
                 {
                     case BrowserType.Chrome:
-                        return GetChromeConfiguredBrowser();
+                        driver =  GetChromeConfiguredBrowser();
+                        break;
                     case BrowserType.Safari:
-                        return GetSafariConfiguredBrowser();
+                        driver = GetSafariConfiguredBrowser();
+                        break;
                     case BrowserType.Firefox:
-                        return GetFirefoxConfiguredBrowser();
+                        driver = GetFirefoxConfiguredBrowser();
+                        break;
                     case BrowserType.Edge:
-                        return GetEdgeConfiguredBrowser();
+                        driver = GetEdgeConfiguredBrowser();
+                        break;
                     default:
-                        return GetChromeConfiguredBrowser();
+                        driver = GetChromeConfiguredBrowser();
+                        break;
                 }
+                if (isSingleton)
+                {
+                    DriverDictionary[type] = driver;
+                }
+                return driver;
             }
             catch (Exception ex)
             {
@@ -43,7 +61,8 @@ namespace TestAutomation.Core.Browser
         {
             var chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("--start-maximized");
-            chromeOptions.AddArgument("Headless");
+            
+            //chromeOptions.AddArgument("Headless");
             chromeOptions.AddArgument("window-size=1920,1080");
             var service = ChromeDriverService.CreateDefaultService();
             var chromeDriver = new ChromeDriver(service, chromeOptions, TimeSpan.FromMinutes(2));

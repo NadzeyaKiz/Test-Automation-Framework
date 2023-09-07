@@ -23,11 +23,18 @@ namespace TestAutomation.Epam.PageObjects.Pages
         public static string frequentSearchElementsLocator = "//li[@class='frequent-searches__item']";
         public static string findButtonOnSearchPannelLocator = "//*[@class='bth-text-layer']";
         public static string searchFieldLocator = "new_form_search";
+        public static string mainPageUrl = "https://www.epam.com/";
 
         public MainPage(IWebDriver driver) : base(driver)
         {
             PageUrl = UiTestSettings.ApplicationUrl;
-            driver.SetUpCookies(By.XPath(cookiesAcceptButtonLocator));
+            //todo: fix it later for nunit tests
+            //driver.SetUpCookies(By.XPath(cookiesAcceptButtonLocator));
+        }
+
+        public void AcceptCoockies()
+        {
+            Driver.SetUpCookies(By.XPath(cookiesAcceptButtonLocator));
         }
 
         public JobListingPage NavigateToJobListingsPage()

@@ -12,6 +12,8 @@ namespace TestAutomation.Tests
     {
         protected IWebDriver _driver { get; set; }
 
+        protected MainPage _mainPage { get; set; }
+
         [OneTimeSetUp]
         public void InitSetUp() 
         {
@@ -23,7 +25,10 @@ namespace TestAutomation.Tests
         [SetUp]
         public virtual void InternalBrowserSetup()
         {
-            _driver = DriverFactory.GetWebBrowser(UiTestSettings.Browser).GotToWebPageUrl(UiTestSettings.ApplicationUrl);
+            _driver = DriverFactory.GetWebBrowser(UiTestSettings.Browser);
+            _mainPage = new MainPage(_driver);
+            _mainPage.NavigateToPage();
+            _mainPage.AcceptCoockies();
             BrowserSetup(_driver);
         }
 

@@ -18,7 +18,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestRunSettings", "TestRunS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAutomation.Epam.PageObjects", "TestAutomation.Epam.PageObjects\TestAutomation.Epam.PageObjects.csproj", "{969D5C47-EF8E-4A65-A42A-9C43BDA5BE66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAutomation.Tests.BDD", "TestAutomation.Tests.BDD\TestAutomation.Tests.BDD.csproj", "{818FF949-3784-4E90-9D60-60BA1EF07312}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAutomation.Tests.BDD", "TestAutomation.Tests.BDD\TestAutomation.Tests.BDD.csproj", "{818FF949-3784-4E90-9D60-60BA1EF07312}"
+	ProjectSection(ProjectDependencies) = postProject
+		{37C858F5-4E6B-4109-85F3-E223867D17CB} = {37C858F5-4E6B-4109-85F3-E223867D17CB}
+		{969D5C47-EF8E-4A65-A42A-9C43BDA5BE66} = {969D5C47-EF8E-4A65-A42A-9C43BDA5BE66}
+		{C924C986-3F4A-4670-9E0B-C3EF5072653C} = {C924C986-3F4A-4670-9E0B-C3EF5072653C}
+		{CE75F375-3263-4CD6-AC1F-21D2871ECAE9} = {CE75F375-3263-4CD6-AC1F-21D2871ECAE9}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
