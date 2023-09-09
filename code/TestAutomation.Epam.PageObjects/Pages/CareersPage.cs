@@ -15,6 +15,7 @@ namespace TestAutomation.Epam.PageObjects.Pages
         public static string searchCareersButtonLocator = "//*[contains(@class,'top-navigation')][@href='/careers']";
         public static string findYourDreamJobButtonLocator = "//div[@class='owl-item active']//a[@href='/careers/job-listings']";
         public static string careersLocationsLocator = "//div[contains(@class,'tabs-links-list')]//a";
+        public static string careersTypeOfWorkCheckboxesConteinerLocator = "//*[@class='recruiting-search__filter']//label";
 
         public CareersPage(IWebDriver driver) : base(driver)
         {
@@ -25,6 +26,11 @@ namespace TestAutomation.Epam.PageObjects.Pages
             Driver.FindElements(By.XPath(careersLocationsLocator))
                 .Select(x => x.Text)
                 .ToList();
+        public List<string> GetCareersTypeOfWorkingCheckboxesItemList() =>
+            Driver.FindElements(By.XPath(careersTypeOfWorkCheckboxesConteinerLocator))
+                .Select(x => x.Text)
+                .ToList();
+
         public CareersPage OpenCareersPageClickCareersButton()
         {
             Driver.ClickWithFindElement(By.XPath(searchCareersButtonLocator));

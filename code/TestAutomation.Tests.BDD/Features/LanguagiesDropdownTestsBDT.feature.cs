@@ -104,26 +104,26 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  testRunner.When("I click on the \'Languagies\' dropdown button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "landuage"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "\"(English)\""});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "\"(Русский)\""});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "\"(Čeština)\""});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "\"(Українська)\""});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "\"(日本語)\""});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "\"(中文)\""});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "\"(Deutsch)\""});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "\"(Polski)\""});
 #line 13
- testRunner.Then("I check that the list of desired languagies contains the following <language>:", ((string)(null)), table1, "Then ");
+ testRunner.Then("I check that the list of desired languagies contains the following <language>:", ((string)(null)), table3, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

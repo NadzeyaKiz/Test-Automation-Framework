@@ -37,7 +37,8 @@ namespace TestAutomation.Tests.BDD.Steps.BDDSteps
         {
             var expectedLanguages = new List<string> { "(English)", "(Русский)", "(Čeština)", "(Українська)", "(日本語)", "(中文)", "(Deutsch)", "(Polski)" };
             var actualLanguagies = MainPage.GetLanguagesFromLangPannel();
-            CollectionAssert.IsSubsetOf(expectedLanguages, actualLanguagies);
+            CollectionAssert.IsSubsetOf(expectedLanguages, actualLanguagies, 
+                $"The list of expected languages {expectedLanguages} not contained in the actual languages list{actualLanguagies}");
         }
 
     }
