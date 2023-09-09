@@ -26,6 +26,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAutomation.Tests.BDD", 
 		{CE75F375-3263-4CD6-AC1F-21D2871ECAE9} = {CE75F375-3263-4CD6-AC1F-21D2871ECAE9}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAutomation.Epam.API", "TestAutomation.Epam.API\TestAutomation.Epam.API.csproj", "{D6BFF335-3DA9-4C6A-8F51-8F5FB0BBEA17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAutomation.Epam.API.Tests", "TestAutomation.Epam.API.Tests\TestAutomation.Epam.API.Tests.csproj", "{77723A76-2B6F-45C3-A17D-E4DE1EFDBA45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +60,14 @@ Global
 		{818FF949-3784-4E90-9D60-60BA1EF07312}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{818FF949-3784-4E90-9D60-60BA1EF07312}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{818FF949-3784-4E90-9D60-60BA1EF07312}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6BFF335-3DA9-4C6A-8F51-8F5FB0BBEA17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6BFF335-3DA9-4C6A-8F51-8F5FB0BBEA17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6BFF335-3DA9-4C6A-8F51-8F5FB0BBEA17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6BFF335-3DA9-4C6A-8F51-8F5FB0BBEA17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77723A76-2B6F-45C3-A17D-E4DE1EFDBA45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77723A76-2B6F-45C3-A17D-E4DE1EFDBA45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77723A76-2B6F-45C3-A17D-E4DE1EFDBA45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77723A76-2B6F-45C3-A17D-E4DE1EFDBA45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
