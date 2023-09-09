@@ -25,5 +25,20 @@ namespace TestAutomation.Tests.BDD.Steps.BDDSteps
         {
             MainPage.NavigateToPage();             
         }
+
+        [When(@"I click on the '([^']*)' dropdown button")]
+        public void WhenIClickOnTheDropdownButton(string languagies)
+        {
+            MainPage.OpenLanguagePannel();
+        }
+
+        [Then(@"I check that the list of desired languagies contains the following <language>:")]
+        public void ThenICheckThatTheListOfDesiredLanguagiesContainsTheFollowingLanguage(Table table)
+        {
+            var expectedLanguages = new List<string> { "(English)", "(Русский)", "(Čeština)", "(Українська)", "(日本語)", "(中文)", "(Deutsch)", "(Polski)" };
+            var actualLanguagies = MainPage.GetLanguagesFromLangPannel();
+            CollectionAssert.IsSubsetOf(expectedLanguages, actualLanguagies);
+        }
+
     }
 }
