@@ -9,6 +9,7 @@ namespace TestAutomation.Epam.API
     public enum Service
     {
         Bibles,
+
         Tech
     }
 }

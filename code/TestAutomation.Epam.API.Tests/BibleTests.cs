@@ -1,9 +1,10 @@
 ﻿using NuGet.Frameworks;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using RestSharp;
 using System.Net;
 using TestAutomation.Epam.API.Controllers;
-using TestAutomation.Epam.API.ResponceModels;
+using TestAutomation.Epam.API.Models.SharedModels.Bible;
 
 namespace TestAutomation.Epam.API.Tests
 {
@@ -13,24 +14,22 @@ namespace TestAutomation.Epam.API.Tests
         [Test]
         public void CheckAllBiblesResponceWithValidParams()
         {
-            var responce = new BiblesController(new CustomRestClient()).GetBibles<RestResponse>();
-            Assert.That(responce.responce.StatusCode, Is.EqualTo(HttpStatusCode.OK), "Invalid status code was returned while sending GET request to /v1/bibles");
-             
+            var response = new BiblesController(new CustomRestClient()).GetBibles<RestResponse>();
+            Assert.That(response.response.StatusCode, Is.EqualTo(HttpStatusCode.OK), "Invalid status code was returned while sending GET request to /v1/bibles!");
         }
 
         [Test]
-        public void CheckAllBiblesResponceWithoutAuthorization()
+        public void CheckAllBiblesResponseWithoutAuthorization()
         {
-            var responce = new BiblesController(new CustomRestClient(), string.Empty).GetBibles<RestResponse>();
-            Assert.That(responce.responce.StatusCode, Is.EqualTo(HttpStatusCode.Unauthorized), "Invalid status codewas returned while sending GET");
+            var response = new BiblesController(new CustomRestClient(), string.Empty).GetBibles<BibleSummaryModel>();
+            Assert.That(response.response.StatusCode, Is.EqualTo(HttpStatusCode.Unauthorized), "Invalid status code was returned while sending GET request to /v1/bibles without authorization!");
         }
 
-
         [Test]
-        public void CheckAllBiblesResponceReturnesObject()
+        public void CheckAllBiblesResponseReturnObject()
         {
-            var responce = new BiblesController(new CustomRestClient()).GetBibles<AllBiblesModel>();
-            CollectionAssert.IsNotEmpty(responce.Bibles.data, "Any bible should be returned after sending GET request to v1/bibles!");
+            var response = new BiblesController(new CustomRestClient()).GetBibles<BibleSummaryModel>();
+            CollectionAssert.IsNotEmpty(response.Bibles.data, "Any bible should be returned after sending GET request to /v1/bibles!");
         }
     }
 }

@@ -1,13 +1,9 @@
 ﻿using NUnit.Framework;
-using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using TestAutomation.Epam.API.Controllers;
-using TestAutomation.Epam.API.ResponceModels;
+using TestAutomation.Epam.API.Models.RequestModels;
+using TestAutomation.Epam.API.Models.ResponceModels.Tech;
+using TestAutomation.Epam.API.Models.SharedModels.Tech;
 
 namespace TestAutomation.Epam.API.Tests
 {
@@ -15,17 +11,55 @@ namespace TestAutomation.Epam.API.Tests
     public class TechTests
     {
         [Test]
-        public void CheckAllTechResponceWithValidParams()
+        //Task5 API(2)
+        public void VerifyTechResponse()
         {
-            var responce = new TechController(new CustomRestClient()).GetTech<RestResponse>();
-            Assert.That(responce.responce.StatusCode, Is.EqualTo(HttpStatusCode.OK), "Invalid status code was returned while sending GET ");
+            var response = new TechController(new CustomRestClient()).GetTechItems<List<TechItemSingleResponseModel>>();
+            Assert.That(response.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK), "Invalid status code data!");
         }
 
         [Test]
-        public void CheckAllTechResponce()
+        //Task6 API(2)
+        public void VerifyListOfObjectsContainsCorrectNumberOfItems()
         {
-            var responce = new TechController(new CustomRestClient()).GetTech<List<AllObjectsModel>>();
-            CollectionAssert.IsNotEmpty(responce.Tech, "Any object should be returned");
+            var expectedNumberOfItems = 13;
+            var response = new TechController(new CustomRestClient()).GetTechItems<List<TechItemSingleResponseModel>>();
+
+            Assert.That(response.TechModel?.Any(), Is.True, "Invalid data!");
+
+            var actualNumberOgItems = response.TechModel.Select(x =>x.id).ToList().Count();
+
+            Assert.That(expectedNumberOfItems, Is.EqualTo(actualNumberOgItems),
+                $"The list of objects does not contain expected number of items '{expectedNumberOfItems}' but contains '{actualNumberOgItems}'");
+        }
+
+        [Test]
+        public void VerifyAllTechItemsAreReturned()
+        {
+            var response = new TechController(new CustomRestClient()).GetTechItems<List<TechItemSingleResponseModel>>();
+            Assert.That(response.TechModel?.Any(), Is.True, "Invalid data!");
+        }
+
+        [Test]
+        public void VerifyAbilityToAddTechItem()
+        {
+            var techItem = new TechItemRequestModel()
+            {
+                name = "apple MacBook Pro 16",
+                data = new TechData
+                {
+                    CpuModel = "Intel Core i9",
+                    HardDiskSize = "1 TB",
+                    Price = (float)1867.99,
+                    Year = 2019
+                }
+            };
+
+            var createdItem =
+                new TechController(new CustomRestClient()).AddTechItem<TechItemCreatedResponseModel>(techItem)
+                    .TechModel;
+
+            var receivedItem = new TechController(new CustomRestClient()).GetSingleTechItem<TechItemSingleResponseModel>(createdItem.id).TechModel;
         }
     }
 }

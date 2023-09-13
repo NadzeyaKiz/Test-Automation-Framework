@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestAutomation.Epam.API.Models.RequestModels;
 
 namespace TestAutomation.Epam.API.Controllers
 {
@@ -13,17 +14,33 @@ namespace TestAutomation.Epam.API.Controllers
         {
         }
 
-        private const string AllTechResourse = "/objects";
+        private const string TechResource = "/objects";
+
+        private const string SingleTechResource = "/objects/{0}";
 
         /// <summary>
-        /// Gets list of Bibles from API
+        /// Request that receive all list of phones
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        /// 
-        public (RestResponse responce, T? Tech) GetTech<T>()
+        /// <typeparam name="T"><see cref="TechItemSingleResponseModel"/></typeparam>
+        /// <returns>response typeof <see cref="RestResponse"/> and List of <see cref="TechItemSingleResponseModel"/></returns>
+        public (RestResponse Response, T? TechModel) GetTechItems<T>()
         {
-            return Get<T>(AllTechResourse);
+            return Get<T>(TechResource);
+        }
+
+        /// <summary>
+        /// Request that receive single phone by id
+        /// </summary>
+        /// <typeparam name="T"><see cref="TechItemSingleResponseModel"/></typeparam>
+        /// <returns>response typeof <see cref="RestResponse"/> and <see cref="TechItemSingleResponseModel"/></returns>
+        public (RestResponse Response, T? TechModel) GetSingleTechItem<T>(string techId)
+        {
+            return Get<T>(string.Format(SingleTechResource, techId));
+        }
+
+        public (RestResponse Response, T? TechModel) AddTechItem<T>(TechItemRequestModel model)
+        {
+            return Post<T, TechItemRequestModel>(TechResource, model);
         }
     }
 }

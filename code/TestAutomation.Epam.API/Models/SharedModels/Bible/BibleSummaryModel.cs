@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using Newtonsoft.Json;
 
-namespace TestAutomation.Epam.API.ResponceModels
+namespace TestAutomation.Epam.API.Models.SharedModels.Bible
 {
-    public class AllBiblesModel
+    public class BibleSummaryModel
     {
         public Bible[] data { get; set; }
-    }    
+    }
 
     public class Bible
     {
-        public string id { get; set; }
-        public string dblId { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [JsonProperty("dbl Id")]
+        public string DblId { get; set; }
         public string abbreviation { get; set; }
         public string abbreviationLocal { get; set; }
         public Language language { get; set; }
@@ -53,5 +53,4 @@ namespace TestAutomation.Epam.API.ResponceModels
         public string description { get; set; }
         public string descriptionLocal { get; set; }
     }
-
 }

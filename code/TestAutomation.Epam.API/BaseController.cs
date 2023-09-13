@@ -7,6 +7,7 @@ namespace TestAutomation.Epam.API
     public class BaseController
     {
         private readonly RestClient _restClient;
+
         public BaseController (CustomRestClient client, Service service, string apiKey = "")
         {
             _restClient = client.CreateRestClient(service);
@@ -15,19 +16,35 @@ namespace TestAutomation.Epam.API
                 _restClient.AddDefaultHeader("api-key", apiKey);
             }
         }
-        protected (RestResponse Response, T ResponceModel) Get<T>(string resource)
+
+        protected (RestResponse response, T ) Get<T>(string resource)
         {
             var request = new RestRequest(resource, Method.Get);
-            var responce = _restClient.ExecuteGet(request);
+            var response = _restClient.ExecuteGet(request);
 
             return (typeof(T) == typeof(RestResponse))
-                ? (responce, default)
-                : (responce, GetDeserializedView<T>(responce));
+                ? (response, default)
+                : (response, GetDeserializedView<T>(response));
         }
 
-        private T? GetDeserializedView<T>(RestResponse responce) 
+
+        protected (RestResponse response, T?) Post<T, TPayload>(string resource, TPayload payload) where TPayload : class
         {
-            return JsonConvert.DeserializeObject<T>(responce.Content);
+            var request = new RestRequest(resource, Method.Post);
+            request.AddJsonBody(payload);
+
+            var response = _restClient.ExecutePost(request);
+
+            return (typeof(T) == typeof(RestResponse))
+                ? (response, default)
+                : (response, GetDeserializedView<T>(response));
         }
+
+        private T? GetDeserializedView<T>(RestResponse response)
+        {
+            var resp = JsonConvert.DeserializeObject<T>(response.Content);
+            return resp;
+        }
+
     }
 }
