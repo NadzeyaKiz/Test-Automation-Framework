@@ -1,8 +1,4 @@
 ﻿using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using TestAutomation.Epam.API.Models.RequestModels;
 
@@ -29,7 +25,7 @@ namespace TestAutomation.Epam.API.Controllers
         }
 
         /// <summary>
-        /// Request that receive single phone by id
+        /// Request that receive single tech object by id
         /// </summary>
         /// <typeparam name="T"><see cref="TechItemSingleResponseModel"/></typeparam>
         /// <returns>response typeof <see cref="RestResponse"/> and <see cref="TechItemSingleResponseModel"/></returns>

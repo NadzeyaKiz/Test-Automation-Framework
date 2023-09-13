@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace TestAutomation.Epam.API.Controllers
 {
-    /// <summary>
-    /// Reponse model for 
-    /// </summary>
+    
     public class BiblesController : BaseController
     {
         public BiblesController(CustomRestClient client, string apiKey) : base(client, Service.Bibles, apiKey)
