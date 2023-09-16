@@ -30,7 +30,7 @@ namespace TestAutomation.Epam.API.Controllers
         /// <returns>response info <see cref="RestResponse"/> and <see cref="BibleSummaryModel"/></returns>
         public (RestResponse response, T? Bibles) GetBibles<T>()
         {
-            return Get<T>(AllBiblesResourse);
+            return Get<T>(AllBiblesResourse);            
         }
 
         /// <summary>

@@ -34,9 +34,39 @@ namespace TestAutomation.Epam.API.Controllers
             return Get<T>(string.Format(SingleTechResource, techId));
         }
 
+        /// <summary>
+        /// Request that posts new tech object
+        /// </summary>
+        /// <typeparam name="T"><see cref="TechItemSingleResponseModel"/></typeparam>
+        /// <returns>response typeof <see cref="RestResponse"/> and <see cref="TechItemSingleResponseModel"/></returns>
         public (RestResponse Response, T? TechModel) AddTechItem<T>(TechItemRequestModel model)
         {
             return Post<T, TechItemRequestModel>(TechResource, model);
         }
+
+        /// <summary>
+        /// Request that delete single tech object by id
+        /// </summary>
+        /// <param name="techId"><see cref="TechItemSingleResponseModel"/></param>
+        /// <returns>response typeof <see cref="RestResponse"/></returns>
+        public RestResponse  DeleteSingleCreatedItem (string techId)
+        {
+            return Delete(string.Format(SingleTechResource, techId));            
+        }
+
+        /// <summary>
+        /// Request that partially update object by id
+        /// </summary>
+        /// <typeparam name="T"><see cref="TechItemSingleResponseModel"/></typeparam>        
+        /// <returns>response typeof <see cref="RestResponse"/></returns>
+        public (RestResponse Response, T? TechModel) UpdateTechItem<T>(object model, string techId)
+        {
+            return Patch<T, TechItemRequestModel>(string.Format(SingleTechResource, techId), model);
+        }
     }
 }
+
+
+
+
+

@@ -27,7 +27,6 @@ namespace TestAutomation.Epam.API
                 : (response, GetDeserializedView<T>(response));
         }
 
-
         protected (RestResponse response, T?) Post<T, TPayload>(string resource, TPayload payload) where TPayload : class
         {
             var request = new RestRequest(resource, Method.Post);
@@ -38,6 +37,28 @@ namespace TestAutomation.Epam.API
             return (typeof(T) == typeof(RestResponse))
                 ? (response, default)
                 : (response, GetDeserializedView<T>(response));
+        }
+
+        protected (RestResponse response, T?) Patch<T, TPayload>(string resource, object payload) where TPayload : class
+        {
+            var request = new RestRequest(resource, Method.Patch);
+            request.AddJsonBody(payload);
+
+            var response = _restClient.Patch(request);
+
+
+            return (typeof(T) == typeof(RestResponse))
+                ? (response, default)
+                : (response, GetDeserializedView<T>(response));
+        }
+
+        protected RestResponse Delete(string resource)
+        {
+            var request = new RestRequest(resource, Method.Delete);
+           
+            var response = _restClient.Delete(request);
+
+            return response;
         }
 
         private T? GetDeserializedView<T>(RestResponse response)
