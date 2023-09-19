@@ -65,8 +65,3 @@ namespace TestAutomation.Epam.API.Controllers
         }
     }
 }
-
-
-
-
-
