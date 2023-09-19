@@ -16,7 +16,7 @@ namespace TestAutomation.Epam.API.Tests
         public void VerifyTechResponse()
         {
             var response = new TechController(new CustomRestClient()).GetTechItems<List<TechItemSingleResponseModel>>();
-            Assert.That(response.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK), "Invalid status code data!");
+            Assert.That(response.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK), "Invalid status code in tech item resource '/objects'!");
         }
 
         [Test]
@@ -61,6 +61,9 @@ namespace TestAutomation.Epam.API.Tests
                 $"The capacity of the created object {receivedItemCapacity} is equal to initial one {techItem.data.Capacity}");
 
             new TechController(new CustomRestClient()).DeleteSingleCreatedItem(receivedItemId);
+            var response = new TechController(new CustomRestClient()).GetSingleTechItem<TechItemSingleResponseModel>(createdItem.id);
+            Assert.That(response.Response.StatusCode.Equals(HttpStatusCode.NotFound),
+                $"The actual statuse {response.Response.StatusCode} is not equal to the expected 'NotFound'");
         }
 
         [Test]
