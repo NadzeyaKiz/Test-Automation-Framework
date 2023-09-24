@@ -6,7 +6,6 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Safari;
 using System.Drawing;
 using TestAutomation.Core.Enums;
-using TestAutomation.Core.Utilities;
 using TestAutomation.Utilities;
 
 namespace TestAutomation.Core.Browser

@@ -27,7 +27,8 @@ namespace TestAutomation.Epam.Tests
             var actualLanguages = MainPage
                 .OpenLanguagePannel()
                 .GetLanguagesFromLangPannel();
-            var expectedLanguages = new List<string> { "(English)", "(Русский)", "(Čeština)", "(Українська)", "(日本語)", "(中文)", "(Deutsch)", "(Polski)" };
+            var expectedLanguages = new List<string> 
+            { "(English)", "(Русский)", "(Čeština)", "(Українська)", "(日本語)", "(中文)", "(Deutsch)", "(Polski)" };
 
             CollectionAssert.IsSubsetOf(expectedLanguages, actualLanguages);
         }

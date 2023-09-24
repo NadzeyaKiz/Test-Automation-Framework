@@ -19,4 +19,8 @@
     <ProjectReference Include="..\TestAutomation.Utilities\TestAutomation.Utilities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Utilities\" />
+  </ItemGroup>
+
 </Project>
