@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using TestAutomation.Core.Browser;
 using TestAutomation.Epam.PageObjects.Pages;
+using TestAutomation.Epam.Tests.TestDataClasses;
 using TestAutomation.Tests;
 
 namespace TestAutomation.Epam.Tests
@@ -11,6 +12,7 @@ namespace TestAutomation.Epam.Tests
 
         public override void BrowserSetup(IWebDriver driver)
         {
+            //var testDataTest = TestDataClassFactory.GetTestData<CareersKeywordSearchTestData>("CareersKeywordSearchTestData.json");
             MainPage = new MainPage(driver);
         }
 

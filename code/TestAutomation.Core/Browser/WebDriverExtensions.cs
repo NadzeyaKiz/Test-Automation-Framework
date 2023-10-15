@@ -120,9 +120,25 @@ namespace TestAutomation.Core.Browser
             FindElementWithElementTobeVisible(driver, by).SendKeys(text);
         }
 
+        public static void SendKeysWithFindElementAndClean(this IWebDriver driver, By by, string text)
+        {
+            var element = FindElementWithElementTobeVisible(driver, by);
+            if (!string.IsNullOrEmpty(element.GetTextFromAttribute("value")))
+            {
+                element.Clear();
+            }
+            element.SendKeys(text);
+        }
+
         public static void ClickWithWaitForDisplay(this IWebDriver driver, IWebElement element)
         {
             driver.WaitForElementToBeVisible(element).Click();
+        }
+
+        public static void ClickWithWaitForDisplay(this IWebDriver driver, By by)
+        {
+            var element = FindElementWithElementTobeVisible(driver, by);
+            element.Click();
         }
 
         public static IWebElement FindTheElement(this IWebDriver driver, By locator)
