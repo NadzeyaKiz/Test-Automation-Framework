@@ -20,23 +20,23 @@ namespace TestAutomation.Tests.BDD.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CheckJobListingsUrl")]
-    public partial class CheckJobListingsUrlFeature
+    [NUnit.Framework.DescriptionAttribute("LanguagiesDropdownTestsBDT")]
+    public partial class LanguagiesDropdownTestsBDTFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "CheckJobListingsUrl.feature"
+#line 1 "LanguagiesDropdownTestsBDT.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "CheckJobListingsUrl", "As a user\r\nI want to navigate to the correct JobListingPage url\r\nIn order to furt" +
-                    "her use JobListingPage features", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "LanguagiesDropdownTestsBDT", "As a user\r\nI want to change the Epam site language\r\nIn order to get required info" +
+                    " in desired language ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,16 +75,16 @@ namespace TestAutomation.Tests.BDD.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Epam Site - JobListingPage - Navigation")]
+        [NUnit.Framework.DescriptionAttribute("EpamSite - Languagies Dropdown")]
         [NUnit.Framework.CategoryAttribute("Smoke")]
-        [NUnit.Framework.CategoryAttribute("Navigation")]
-        public void EpamSite_JobListingPage_Navigation()
+        [NUnit.Framework.CategoryAttribute("Languagies")]
+        public void EpamSite_LanguagiesDropdown()
         {
             string[] tagsOfScenario = new string[] {
                     "Smoke",
-                    "Navigation"};
+                    "Languagies"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Epam Site - JobListingPage - Navigation", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EpamSite - Languagies Dropdown", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -102,10 +102,28 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("I accept all cookies on Epam site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
- testRunner.When("I hover over the \'Careers\' click on Join our team link from the dropdown menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I click on the \'Languagies\' dropdown button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "landuage"});
+                table3.AddRow(new string[] {
+                            "\"(English)\""});
+                table3.AddRow(new string[] {
+                            "\"(Русский)\""});
+                table3.AddRow(new string[] {
+                            "\"(Čeština)\""});
+                table3.AddRow(new string[] {
+                            "\"(Українська)\""});
+                table3.AddRow(new string[] {
+                            "\"(日本語)\""});
+                table3.AddRow(new string[] {
+                            "\"(中文)\""});
+                table3.AddRow(new string[] {
+                            "\"(Deutsch)\""});
+                table3.AddRow(new string[] {
+                            "\"(Polski)\""});
 #line 13
- testRunner.Then("I check that the \'Job Listing\' Page is opend", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I check that the list of desired languagies contains the following <language>:", ((string)(null)), table3, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -1,4 +1,4 @@
-﻿Feature: CheckJobListingsUrl
+﻿Feature: EpamSiteJobListingPageTestsBDT
 
 As a user
 I want to navigate to the correct JobListingPage url

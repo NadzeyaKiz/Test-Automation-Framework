@@ -34,7 +34,7 @@ namespace TestAutomation.Epam.Tests
 
         [Test]
         public void NumberOfFrequentSearchArticlesOnPageTest()
-        {
+        {            
             var frequantSearchElement = this.MainPage.GetFrequentSearchRandomElement();
             _driver.ClickWithWaitForDisplay(frequantSearchElement);
             MainPage.ClickFindButtonOnSearchPannel();
