@@ -6,7 +6,7 @@ In order to further use JobListingPage features
 
 @Smoke
 @Navigation
-Scenario: Epam Site - JobListingPage - Navigation
+Scenario: Epam Site - JobListingPage - Check Navigation to the 'Job Listing Page'
 	Given I navigate to the main page of Epam site
 	And I accept all cookies on Epam site
 	When I hover over the 'Careers' click on Join our team link from the dropdown menu

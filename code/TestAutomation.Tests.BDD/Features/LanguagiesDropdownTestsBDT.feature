@@ -6,7 +6,7 @@ In order to get required info in desired language
 
 @Smoke
 @Languagies
-Scenario: EpamSite - Languagies Dropdown
+Scenario: EpamSite - Check appearance languagies in the 'Languagies Dropdown'
 	Given I navigate to the main page of Epam site
 	And I accept all cookies on Epam site
 	When I click on the 'Languagies' dropdown button
