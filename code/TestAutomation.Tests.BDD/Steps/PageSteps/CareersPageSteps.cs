@@ -18,10 +18,10 @@ namespace TestAutomation.Tests.BDD.Steps.PageSteps
             CareersPage.OpenCareersPageClickCareersButton();
         }
 
-        [When(@"I click on the '([^']*)'")]
-        public void WhenIClickOnThe(string p0)
+        [When(@"I click on the '([^']*)' on Careers Page")]
+        public void WhenIClickOnTheOnCareersPage(string p0)
         {
-            CareersPage.OpenJobListingsPageClickFindYourDreamJobButton(); 
+            CareersPage.OpenJobListingsPageClickFindYourDreamJobButton();
         }
 
         [Then(@"I check that the actual list of locations contains the following <locations>:")]

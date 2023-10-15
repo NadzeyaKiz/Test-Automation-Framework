@@ -75,16 +75,16 @@ namespace TestAutomation.Tests.BDD.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EpamSite - Languagies Dropdown")]
+        [NUnit.Framework.DescriptionAttribute("EpamSite - Check appearance languagies in the \'Languagies Dropdown\'")]
         [NUnit.Framework.CategoryAttribute("Smoke")]
         [NUnit.Framework.CategoryAttribute("Languagies")]
-        public void EpamSite_LanguagiesDropdown()
+        public void EpamSite_CheckAppearanceLanguagiesInTheLanguagiesDropdown()
         {
             string[] tagsOfScenario = new string[] {
                     "Smoke",
                     "Languagies"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EpamSite - Languagies Dropdown", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EpamSite - Check appearance languagies in the \'Languagies Dropdown\'", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

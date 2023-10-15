@@ -75,16 +75,16 @@ namespace TestAutomation.Tests.BDD.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Epam Site - JobListingPage - Navigation")]
+        [NUnit.Framework.DescriptionAttribute("Epam Site - JobListingPage - Check Navigation to the \'Job Listing Page\'")]
         [NUnit.Framework.CategoryAttribute("Smoke")]
         [NUnit.Framework.CategoryAttribute("Navigation")]
-        public void EpamSite_JobListingPage_Navigation()
+        public void EpamSite_JobListingPage_CheckNavigationToTheJobListingPage()
         {
             string[] tagsOfScenario = new string[] {
                     "Smoke",
                     "Navigation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Epam Site - JobListingPage - Navigation", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Epam Site - JobListingPage - Check Navigation to the \'Job Listing Page\'", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

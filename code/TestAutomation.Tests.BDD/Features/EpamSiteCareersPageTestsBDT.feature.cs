@@ -75,16 +75,16 @@ namespace TestAutomation.Tests.BDD.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Epam Site - Careers Page - Locations")]
+        [NUnit.Framework.DescriptionAttribute("Epam Site - Careers Page - Check \'Locations\' apperance")]
         [NUnit.Framework.CategoryAttribute("Smoke")]
         [NUnit.Framework.CategoryAttribute("CareersLokations")]
-        public void EpamSite_CareersPage_Locations()
+        public void EpamSite_CareersPage_CheckLocationsApperance()
         {
             string[] tagsOfScenario = new string[] {
                     "Smoke",
                     "CareersLokations"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Epam Site - Careers Page - Locations", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Epam Site - Careers Page - Check \'Locations\' apperance", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -105,7 +105,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("I open Careers page with click on \'Careers\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
- testRunner.When("I click on the \'Find your dream job button\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I click on the \'Find your dream job button\' on Careers Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                             "\"AMERICAS\""});
@@ -121,16 +121,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Epam Site - Careers Page - Type of working checkboxes")]
+        [NUnit.Framework.DescriptionAttribute("Epam Site - Careers Page - Check \'Type of working\' checkboxes apperance")]
         [NUnit.Framework.CategoryAttribute("CriticalPath")]
         [NUnit.Framework.CategoryAttribute("TypeOfWorking")]
-        public void EpamSite_CareersPage_TypeOfWorkingCheckboxes()
+        public void EpamSite_CareersPage_CheckTypeOfWorkingCheckboxesApperance()
         {
             string[] tagsOfScenario = new string[] {
                     "CriticalPath",
                     "TypeOfWorking"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Epam Site - Careers Page - Type of working checkboxes", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Epam Site - Careers Page - Check \'Type of working\' checkboxes apperance", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 22
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -151,7 +151,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("I open Careers page with click on \'Careers\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 26
- testRunner.When("I click on the \'Find your dream job button\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I click on the \'Find your dream job button\' on Careers Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "\"Remote\""});
